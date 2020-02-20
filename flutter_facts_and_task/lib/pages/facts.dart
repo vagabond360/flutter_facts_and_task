@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class RandomFacts extends StatefulWidget {
-  @override
-  _RandomFactsState createState() => _RandomFactsState();
-}
+//class RandomFacts extends StatefulWidget {
+//  @override
+//  _RandomFactsState createState() => _RandomFactsState();
+//}
 
-class _RandomFactsState extends State<RandomFacts> {
+class RandomFacts extends StatelessWidget {
 
   int _triviaButtonColor = 0xFF7174F2;
   int _yearButtonColor = 0xFFDA78ED;
@@ -19,22 +19,7 @@ class _RandomFactsState extends State<RandomFacts> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 32.0),
-                  height: 223.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    gradient: LinearGradient(
-                      colors: [Color(0xFFEC008C), Color(0xFFFC6767)],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          FactBoard(),
           Text('Select the category you want to generate',
             textAlign: TextAlign.center,
           ),
@@ -42,9 +27,9 @@ class _RandomFactsState extends State<RandomFacts> {
           Row(
             children: <Widget>[
               SizedBox(width: 20),
-              FactButton(name: 'Trivia', color: _triviaButtonColor),
+              FactButton(name: 'Trivia', color: Color(_triviaButtonColor)),
               SizedBox(width: 15),
-              FactButton(name: 'Year', color: _yearButtonColor),
+              FactButton(name: 'Year', color: Color(_yearButtonColor)),
               SizedBox(width: 20),
             ],
           ),
@@ -52,9 +37,9 @@ class _RandomFactsState extends State<RandomFacts> {
           Row(
             children: <Widget>[
               SizedBox(width: 20),
-              FactButton(name: 'Math', color: _mathButtonColor),
+              FactButton(name: 'Math', color: Color(_mathButtonColor)),
               SizedBox(width: 15),
-              FactButton(name: 'Date', color: _dateButtonColor),
+              FactButton(name: 'Date', color: Color(_dateButtonColor)),
               SizedBox(width: 20),
             ],
           ),
@@ -84,10 +69,38 @@ class _RandomFactsState extends State<RandomFacts> {
   }
 }
 
+class FactBoard extends StatefulWidget {
+  @override
+  _FactBoardState createState() => _FactBoardState();
+}
+
+class _FactBoardState extends State<FactBoard> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 32.0),
+            height: 223.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              gradient: LinearGradient(
+                colors: [Color(0xFFEC008C), Color(0xFFFC6767)],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
 class FactButton extends StatelessWidget {
 
   String name;
-  int color;
+  Color color;
   Function onPress;
 
   FactButton({this.name,this.color}); //TODO: add this.onPress
@@ -107,11 +120,11 @@ class FactButton extends StatelessWidget {
           ),
         ),
         decoration: BoxDecoration(
-          color: Color(color),
+          color: color,
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           boxShadow: [
             BoxShadow(
-              color: Color(color).withOpacity(0.3),
+              color: color.withOpacity(0.3),
               blurRadius: 8.0, // has the effect of softening the shadow
               offset: Offset(
                 0.0, // horizontal, move right 0
@@ -124,3 +137,4 @@ class FactButton extends StatelessWidget {
     );
   }
 }
+
