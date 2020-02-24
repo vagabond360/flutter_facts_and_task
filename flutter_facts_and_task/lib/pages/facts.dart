@@ -24,25 +24,32 @@ class RandomFacts extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 16.0),
-          Row(
-            children: <Widget>[
-              SizedBox(width: 20),
-              FactButton(name: 'Trivia', color: Color(_triviaButtonColor)),
-              SizedBox(width: 15),
-              FactButton(name: 'Year', color: Color(_yearButtonColor)),
-              SizedBox(width: 20),
-            ],
+          Expanded(
+//            flex: 3,
+            child: Row(
+              children: <Widget>[
+                SizedBox(width: 20),
+                FactButton(name: 'Trivia', color: Color(_triviaButtonColor)),
+                SizedBox(width: 15),
+                FactButton(name: 'Year', color: Color(_yearButtonColor)),
+                SizedBox(width: 20),
+              ],
+            ),
+          ),
+          // SizedBox(height: 15),
+          Expanded(
+//            flex: 3,
+            child: Row(
+              children: <Widget>[
+                SizedBox(width: 20),
+                FactButton(name: 'Math', color: Color(_mathButtonColor)),
+                SizedBox(width: 15),
+                FactButton(name: 'Date', color: Color(_dateButtonColor)),
+                SizedBox(width: 20),
+              ],
+            ),
           ),
           SizedBox(height: 15),
-          Row(
-            children: <Widget>[
-              SizedBox(width: 20),
-              FactButton(name: 'Math', color: Color(_mathButtonColor)),
-              SizedBox(width: 15),
-              FactButton(name: 'Date', color: Color(_dateButtonColor)),
-              SizedBox(width: 20),
-            ],
-          ),
         ],
       ),
 
@@ -109,7 +116,7 @@ class FactButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        height: 130,
+        height: 155,
         child: FlatButton(
           onPressed: () {onPress();},
           child: Text('$name',

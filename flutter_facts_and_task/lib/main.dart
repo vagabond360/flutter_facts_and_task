@@ -8,7 +8,7 @@ void main() => runApp(MaterialApp(
   routes: {
     '/': (context) => Loading(),
     '/RandomFacts': (context) => RandomFacts(),
-    '/Tasks': (context) => Tasks()
+    '/Tasks': (context) => Tasks(),
   },
 ));
 
