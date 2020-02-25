@@ -6,6 +6,7 @@ class Tasks extends StatefulWidget {
 }
 
 class _TasksState extends State<Tasks> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,9 +54,9 @@ class _TasksState extends State<Tasks> {
                 ),
                 Expanded(
                   flex: 20,
-                  child: Row(
+                  child: ListView(
                     children: <Widget>[
-                      Text('sadsa')
+                      //task list
                     ],
                   ),
                 )
@@ -63,6 +64,27 @@ class _TasksState extends State<Tasks> {
            ),
         ),
       ),
+    );
+  }
+}
+
+class Task{
+  String someTask;
+  String isCompleted;
+
+  Task({this.someTask, this.isCompleted});
+
+  Widget newTask(){
+    return Row(
+      children: <Widget>[
+
+        Text('$someTask',
+          style: TextStyle(
+            fontSize: 18.0,
+            letterSpacing: 0.17,
+          ),
+        ),
+      ],
     );
   }
 }
