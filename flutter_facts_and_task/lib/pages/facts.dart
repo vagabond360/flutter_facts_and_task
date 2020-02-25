@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+//import 'package:flutter_facts_and_task/services/random_fact.dart';
 
 //class RandomFacts extends StatefulWidget {
 //  @override
 //  _RandomFactsState createState() => _RandomFactsState();
 //}
 
-class RandomFacts extends StatelessWidget {
+class RandomFacts extends StatefulWidget {
+
+  @override
+  _RandomFactsState createState() => _RandomFactsState();
+}
+
+class _RandomFactsState extends State<RandomFacts> {
 
   int _triviaButtonColor = 0xFF7174F2;
   int _yearButtonColor = 0xFFDA78ED;
@@ -19,13 +25,55 @@ class RandomFacts extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          FactBoard(),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 32.0),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 0.0),
+                  height: 223.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    gradient: LinearGradient(
+                      colors: [Color(0xFFEC008C), Color(0xFFFC6767)],
+                    ),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                     Align(
+                      alignment: Alignment(0.0,-0.75),
+                      child: Text('', //fact number
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 48.0,
+                          letterSpacing: 16.0,
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment(0.0,0.3),
+                      child: Text('', //fact text
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                          letterSpacing: 0.17,
+                        ),
+                      ),
+                    ),
+                   ],
+                  ),
+                ),
+              ),
+            ],
+          ),
           Text('Select the category you want to generate',
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 16.0),
           Expanded(
-//            flex: 3,
             child: Row(
               children: <Widget>[
                 SizedBox(width: 20),
@@ -38,7 +86,6 @@ class RandomFacts extends StatelessWidget {
           ),
           // SizedBox(height: 15),
           Expanded(
-//            flex: 3,
             child: Row(
               children: <Widget>[
                 SizedBox(width: 20),
@@ -76,41 +123,12 @@ class RandomFacts extends StatelessWidget {
   }
 }
 
-class FactBoard extends StatefulWidget {
-  @override
-  _FactBoardState createState() => _FactBoardState();
-}
-
-class _FactBoardState extends State<FactBoard> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 32.0),
-            height: 223.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20.0)),
-              gradient: LinearGradient(
-                colors: [Color(0xFFEC008C), Color(0xFFFC6767)],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-
 class FactButton extends StatelessWidget {
 
   String name;
   Color color;
-  Function onPress;
 
-  FactButton({this.name,this.color}); //TODO: add this.onPress
+  FactButton({this.name,this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +136,7 @@ class FactButton extends StatelessWidget {
       child: Container(
         height: 155,
         child: FlatButton(
-          onPressed: () {onPress();},
+          onPressed: () {},
           child: Text('$name',
             style: TextStyle(
               color: Colors.white,
@@ -144,4 +162,5 @@ class FactButton extends StatelessWidget {
     );
   }
 }
+
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facts_and_task/services/random_fact.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -6,6 +7,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,5 +16,12 @@ class _LoadingState extends State<Loading> {
         child: Text('loading page'),
       )
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+//    Fact randomFact = Fact(factType: 'math');
+//    randomFact.getFact();
   }
 }
