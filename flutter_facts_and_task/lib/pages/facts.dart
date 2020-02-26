@@ -1,25 +1,34 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_facts_and_task/services/random_fact.dart';
+import 'package:flutter_facts_and_task/services/random_fact.dart';
 
-//class RandomFacts extends StatefulWidget {
-//  @override
-//  _RandomFactsState createState() => _RandomFactsState();
-//}
-
-class RandomFacts extends StatefulWidget {
+class RandomFactsPage extends StatefulWidget {
 
   @override
-  _RandomFactsState createState() => _RandomFactsState();
+  _RandomFactsPageState createState() => _RandomFactsPageState();
 }
 
-class _RandomFactsState extends State<RandomFacts> {
+class _RandomFactsPageState extends State<RandomFactsPage> {
+  RandomFact service;
+  String factNum;
+  String factTxt;
+  bool isLoading = false;
 
-  int _triviaButtonColor = 0xFF7174F2;
-  int _yearButtonColor = 0xFFDA78ED;
-  int _mathButtonColor = 0xFF66E099;
-  int _dateButtonColor = 0xFFE0E34D;
+  @override
+  void initState() {
+    factNum = '';
+    factTxt = '';
+    service = RandomFact(callback: setData);
+    super.initState();
+  }
 
+  void setData(String num,String fact){
+    setState(() {
+      setLoading(false);
+      factNum = num;
+      factTxt = fact;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,11 +47,11 @@ class _RandomFactsState extends State<RandomFacts> {
                       colors: [Color(0xFFEC008C), Color(0xFFFC6767)],
                     ),
                   ),
-                  child: Stack(
+                  child:isLoading ? Center(child: CircularProgressIndicator(backgroundColor: Colors.transparent)): Stack(
                     children: <Widget>[
                      Align(
                       alignment: Alignment(0.0,-0.75),
-                      child: Text('', //fact number
+                      child: Text(factNum, //fact number
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         style: TextStyle(
@@ -54,7 +63,7 @@ class _RandomFactsState extends State<RandomFacts> {
                     ),
                     Align(
                       alignment: Alignment(0.0,0.3),
-                      child: Text('', //fact text
+                      child: Text(factTxt, //fact text
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -77,9 +86,15 @@ class _RandomFactsState extends State<RandomFacts> {
             child: Row(
               children: <Widget>[
                 SizedBox(width: 20),
-                FactButton(name: 'Trivia', color: Color(_triviaButtonColor)),
+                FactButton(name: 'Trivia', color: Color(0xFF7174F2),callBack: (String type){
+                  setLoading(true);
+                  service.getFact(type);
+                }),
                 SizedBox(width: 15),
-                FactButton(name: 'Year', color: Color(_yearButtonColor)),
+                FactButton(name: 'Year', color: Color(0xFFDA78ED),callBack: (String type){
+                  setLoading(true);
+                  service.getFact(type);
+                }),
                 SizedBox(width: 20),
               ],
             ),
@@ -89,9 +104,15 @@ class _RandomFactsState extends State<RandomFacts> {
             child: Row(
               children: <Widget>[
                 SizedBox(width: 20),
-                FactButton(name: 'Math', color: Color(_mathButtonColor)),
+                FactButton(name: 'Math', color: Color(0xFF66E099),callBack: (String type){
+                  setLoading(true);
+                  service.getFact(type);
+                }),
                 SizedBox(width: 15),
-                FactButton(name: 'Date', color: Color(_dateButtonColor)),
+                FactButton(name: 'Date', color: Color(0xFFE0E34D),callBack: (String type){
+                  setLoading(true);
+                  service.getFact(type);
+                }),
                 SizedBox(width: 20),
               ],
             ),
@@ -121,14 +142,21 @@ class _RandomFactsState extends State<RandomFacts> {
       ),
     );
   }
+
+  void setLoading(bool isLoading){
+    setState(() {
+      this.isLoading = isLoading;
+    });
+  }
 }
 
+// ignore: must_be_immutable
 class FactButton extends StatelessWidget {
-
+  Function(String) callBack;
   String name;
   Color color;
 
-  FactButton({this.name,this.color});
+  FactButton({this.name,this.color,this.callBack});
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +164,7 @@ class FactButton extends StatelessWidget {
       child: Container(
         height: 155,
         child: FlatButton(
-          onPressed: () {},
+          onPressed: () => callBack(name.toLowerCase()),
           child: Text('$name',
             style: TextStyle(
               color: Colors.white,
@@ -161,6 +189,8 @@ class FactButton extends StatelessWidget {
       ),
     );
   }
+
+
 }
 
 

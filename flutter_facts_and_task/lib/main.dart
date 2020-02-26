@@ -4,10 +4,10 @@ import 'package:flutter_facts_and_task/pages/facts.dart';
 import 'package:flutter_facts_and_task/pages/tasks.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/Tasks',
+  initialRoute: '/RandomFacts',
   routes: {
     '/': (context) => Loading(),
-    '/RandomFacts': (context) => RandomFacts(),
+    '/RandomFacts': (context) => RandomFactsPage(),
     '/Tasks': (context) => Tasks(),
   },
 ));

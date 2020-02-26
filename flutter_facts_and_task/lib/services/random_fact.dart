@@ -1,24 +1,23 @@
 import 'package:http/http.dart';
 import 'dart:convert';
 
-class Fact{
+class RandomFact{
 
-  String factType;
+  String factText;
+  String factNumber;
 
-  Fact({this.factType});
+  Function(String,String) callback;
+  RandomFact({this.callback});
 
-  void getFact() async{
+  Future<void> getFact(String factType) async{
     try {
       Response response = await get(
           'http://numbersapi.com/random/$factType?json');
       Map data = jsonDecode(response.body);
 
-      String text = data['text'];
-      String number = data['number'].toString();
-
-      print(text);
-      print(number);
-
+      factText = data['text'];
+      factNumber = data['number'].toString();
+      callback(factNumber,factText);
     }catch (e) {
       print('caught error: $e');
     }

@@ -67,24 +67,3 @@ class _TasksState extends State<Tasks> {
     );
   }
 }
-
-class Task{
-  String someTask;
-  String isCompleted;
-
-  Task({this.someTask, this.isCompleted});
-
-  Widget newTask(){
-    return Row(
-      children: <Widget>[
-
-        Text('$someTask',
-          style: TextStyle(
-            fontSize: 18.0,
-            letterSpacing: 0.17,
-          ),
-        ),
-      ],
-    );
-  }
-}
