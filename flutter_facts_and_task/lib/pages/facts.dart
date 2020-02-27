@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facts_and_task/services/random_fact.dart';
 
 class RandomFactsPage extends StatefulWidget {
@@ -16,6 +17,11 @@ class _RandomFactsPageState extends State<RandomFactsPage> {
 
   @override
   void initState() {
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
     factNum = '';
     factTxt = '';
     service = RandomFact(callback: setData);
