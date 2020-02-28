@@ -126,26 +126,6 @@ class _RandomFactsPageState extends State<RandomFactsPage> {
           SizedBox(height: 15),
         ],
       ),
-
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 3.0,
-        backgroundColor: Colors.white,
-        //TODO: add onTap
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shuffle),
-            title: Text('Facts'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.playlist_add),
-            title: Text('Tasks'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.help),
-            title: Text('My'),
-          )
-        ],
-      ),
     );
   }
 

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ToDo extends StatefulWidget {
+class ToDoPage extends StatefulWidget {
   @override
-  _ToDoState createState() => _ToDoState();
+  _ToDoPageState createState() => _ToDoPageState();
 }
 
-class _ToDoState extends State<ToDo> {
+class _ToDoPageState extends State<ToDoPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
